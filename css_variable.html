@@ -5,7 +5,7 @@
   <title>Scoped CSS Variables and JS</title>
 </head>
 <body>
-  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+  <h2>Update CSS Variables with <span class='h1'>JS</span></h2>
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
@@ -20,10 +20,11 @@
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
-  <style>
+  <style> 
+  /* using css variables in js */
     :root {
       --base: #ffc600;
-      --spacing: 10px;
+      --spacing: 10px; 
       --blur: 10px;
     }
     img {
@@ -32,7 +33,7 @@
       filter: blur(var(--blur));
 
     }
-    h1 {
+    .h1 {
       color: var(--base);
     }
 
@@ -59,6 +60,17 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      // setting the value to change with root functions
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
   </script>
 
 </body>
